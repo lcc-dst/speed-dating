@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LCC Speeddating</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="https://rawgit.com/leicsCC/self/master/base.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://rawgit.com/leicsCC/self/master/font-awesome.css" crossorigin="anonymous">
+  
+
+</head>
+<body>
+  <div class="container-fluid" style="">
+     <header class="header-global row cf" role="banner" style="padding-top: 8px;padding-bottom: 8px; background-color:;">
+    <div class="container">
+      <div class="header-global-responsivebar">
+        <h1 style="color:#fff;margin-bottom:0;">Speed Dating Generator</h1>
+      </div>
+    </div>
+  </header>
+
+    <div class="container-fluid page-header" style="width: 60%; margin-top:2em;">
+  <div>
+  <p><i class="fa fa-glass"></i>&nbsp;Comms, Digital and Creative - let's get it on. <del>No likey, no lighty</del> - sorry, wrong show</p>
+  </div>
+  <div>
+    <div class="panel panel-highlight panel-notification" style="margin-bottom:10px;">
+      <h1 style="margin-bottom:0;">Your time is up in:&nbsp;<i class="fa fa-clock-o"></i>&nbsp;<span id="countdown"></span></h1>
+    </div>
+  
+  <div>
+    <h2>It's a date!</h2>
+  </div>
+	<div style="width:80%;align:middle;">
+	<table class="table table-striped table-sm">
+		<thead>
+			<!--<td></td>-->
+			<!--<td></td>-->
+		</thead>
+		<tbody id="tableBody">
+		</tbody>
+	</table>
+  </div>
+	</div>
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		(function(){
+			var persons = ["Joanna Morrison", "Antoine Omisore", "Asha Mistry", "Ashley Brown", "Ceri Walker", "Ian Jones", "Jacqui Wooldridge", "Kara-Jo Macfadyen","Katie Pegg", "Kirsty Nicolson", "Krupali Punja", "Kurtis Johnson", "Laura Jones", "Lindsey Mann", "Liz Goodman", "Lorna Dellow", "Lucy Booth", "Lucy Yewlett", "Mark Halstead", "Martin Boonham", "Michael Brailsford", "Natalie Missenden", "Neil Santy", "Rachael Marriott", "Roger Bradshaw", "Sally Kilbourne", "Sarah Chetwyn", "Sophie Farrell", "Steve Pumfrey", "Vicky Johnston",];
+			
+  		// 	If statement isn't there yet so will do some more work if time __KJ
+      // 			if (persons.length % 2 != 0) {
+      //     alert("You must have an even number of people, or it could get awkward #thirdwheel. You currently have " + names.length + " names.");
+      // } else {
+			console.log("persons: ", persons);
+			//Source: http://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array - not elegant but lightweight and doesn't involve slice __KJ
+			var personArrayLength = persons.length;
+			console.log("personArrayLength: ", personArrayLength);
+			var counter = 0;
+			while (persons.length > 0){
+				console.log("counter: ", counter);
+				var person = persons.splice(Math.floor(Math.random()*persons.length), 1);
+				var person2 = persons.splice(Math.floor(Math.random()*persons.length), 1);
+				//var tableBody = document.;
+				var personRow = document.createElement("tr");
+				personRow.setAttribute("id", "tr"+counter);
+				document.getElementById("tableBody").appendChild(personRow);
+				var personData = document.createElement("td");
+				personData.innerText = person;
+				var personData2 = document.createElement("td");
+				personData2.innerText = person2;
+				document.getElementById("tr"+counter).appendChild(personData);
+				document.getElementById("tr"+counter).appendChild(personData2);
+				counter += 1;
+				//console.log("random person: ", person);
+			}
+			
+			
+		  // 	Dating timer - counting down from 2mins __KJ
+		  // window.setTimeout(, 3000);
+		
+			function countdown( elementName, minutes, seconds )
+        {
+            var element, endTime, hours, mins, msLeft, time;
+        
+            function twoDigits( n )
+            {
+                return (n <= 9 ? "0" + n : n);
+            }
+        
+            function updateTimer()
+            {
+                msLeft = endTime - (+new Date);
+                if ( msLeft < 1000 ) {
+                    element.innerHTML = "00:00 Aww snap, time flies when you're having fun!";
+                } else {
+                    time = new Date( msLeft );
+                    hours = time.getUTCHours();
+                    mins = time.getUTCMinutes();
+                    element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+                    setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                }
+            }
+        
+            element = document.getElementById( elementName );
+            endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+            updateTimer();
+        }
+        
+        countdown( "countdown", 2, 0 );
+        			
+        		})();
+        		
+        	</script>
+        	
+</body>
+</html>
