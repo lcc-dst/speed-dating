@@ -27,11 +27,14 @@
   </div>
   <div>
     <div class="panel panel-highlight panel-notification" style="margin-bottom:10px;">
-      <h1 style="margin-bottom:0;">Your time is up in:&nbsp;<i class="fa fa-clock-o"></i>&nbsp;<span id="countdown"></span></h1>
+      <h1 style="margin-bottom:0;"><i class="fa fa-clock-o"></i>&nbsp;Your time is up in:&nbsp;<span id="countdown"></span></h1>
     </div>
-  
+    <div class="justify-content-end" style="margin:5px 0 10px 80%; ">
+      <button id="start" class="btn btn-sm btn-success" onClick="countdown">Get started</button>
+      <button id="refresh" class="btn btn-sm btn-outline-warning" onClick="window.location.reload()">New pairs</button>
+    </div>
   <div>
-    <h2>It's a date!</h2>
+    <!--<h2>It's a date!</h2>-->
   </div>
 	<div style="width:80%;align:middle;">
 	<table class="table table-striped table-sm">
@@ -76,12 +79,10 @@
 				document.getElementById("tr"+counter).appendChild(personData2);
 				counter += 1;
 				//console.log("random person: ", person);
-			}
+			}})();
 			
 			
-		  // 	Dating timer - counting down from 2mins __KJ
-		  // window.setTimeout(, 3000);
-		
+			
 			function countdown( elementName, minutes, seconds )
         {
             var element, endTime, hours, mins, msLeft, time;
@@ -110,9 +111,13 @@
             updateTimer();
         }
         
-        countdown( "countdown", 3, 0 );
-        			
-        		})();
+        document.getElementById( 'start' ).onclick = function()
+        
+        {
+        
+            countdown( "countdown", 3, 0 );
+        
+        }
         		
         	</script>
         	
